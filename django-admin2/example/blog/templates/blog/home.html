@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Example.com</h1>
+
+        <h3>{% trans "Imagine that this is a real site" %}</h3>
+
+        <p>{% trans "Pretend that this is the homepage of a big Django site." %}</p>
+
+        <p>{% trans "Imagine lots of things are here:" %}</p>
+        <ul>
+            <li>{% trans "A blog" %}</li>
+            <li>{% trans "Comments" %}</li>
+            <li>{% trans "And so on..." %}</li>
+        </ul>
+
+        <p>{% trans "In other words, these are items that we can introspect through the Django admin." %}</p>
+
+        <h3>{% trans "Under the hood" %}</h3>
+
+        <p>{% trans "Now, explore the Django admin for example.com. Click on either of the following:" %}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        {% url "admin:index" as admin_url %}
+        <h4>{% blocktrans %}The original <a href="{{ admin_url }}">Django Admin</a>{% endblocktrans %}</h4>
+
+        <a href="{% url "admin:index" %}">
+            <img class="img-responsive" src="{% static 'img/admin.png' %}" />
+        </a>
+
+        <p>{% trans "Powered by django.contrib.admin. This is just here for reference." %}</p>
+    </div>
+    <div class="col-sm-6">
+        {% url "admin2:dashboard" as admin2_url %}
+        <h4>{% blocktrans %}The new <a href="{{ admin2_url }}">Admin2</a>{% endblocktrans %}</h4>
+
+        <a href="{% url "admin2:dashboard" %}">
+            <img class="img-responsive" src="{% static 'img/admin2.png' %}" />
+        </a>
+
+        <p>{% trans "Powered by django-admin2." %}</p>
+    </div>
+</div>
+<hr />
+{% url 'blog_list' as blog_url %}
+<h2>{% blocktrans %}See the <a href="{{ blog_url }}">Blog</a> in Action{% endblocktrans %}</h2>
+{% endblock %}
